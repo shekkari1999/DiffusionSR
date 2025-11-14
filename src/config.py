@@ -9,10 +9,11 @@ _project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 scale = 4
 patch_size = 256
 
-# Dataset paths (relative to project root)
-data_dir = os.path.join(_project_root, 'data')
-dir_HR = os.path.join(data_dir, 'DIV2K_train_HR')
-dir_LR = os.path.join(data_dir, 'DIV2K_train_LR_bicubic', 'X4')
+# Dataset paths
+# Note: os.path.join ignores previous args if given an absolute path
+# So we use the absolute path directly
+dir_HR = '/Users/akhilshekkari/Library/CloudStorage/GoogleDrive-shekkari@umd.edu/My Drive/train_HR_patches_256'
+dir_LR = '/Users/akhilshekkari/Library/CloudStorage/GoogleDrive-shekkari@umd.edu/My Drive/train_LR_patches_256'
 
 # noise control params
 T = 15
@@ -57,3 +58,6 @@ initial_conv_out_channels = 64
 ## training
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 batch_size = 1
+
+# Dataset mode: True if using pre-generated patches, False if using full images
+use_patches = True
